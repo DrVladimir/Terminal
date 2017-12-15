@@ -1,0 +1,43 @@
+#include "shortcutcreator.h1"
+#include "shortcutcreator.ui1"
+
+ShortcutCreator::ShortcutCreator(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ShortcutCreator)
+{
+    ui->setupUi(this);
+    connect(ui->cancelButton,SIGNAL(clicked(bool)),this,SLOT(cancelButtonSlot()));
+    connect(ui->okButton,SIGNAL(clicked(bool)),this,SLOT(okButtonSlot()));
+    connect(ui->deleteButton,SIGNAL(clicked(bool)),this,SLOT(deleteButton()));
+}
+
+ShortcutCreator::~ShortcutCreator()
+{
+    delete ui;
+}
+
+
+void ShortcutCreator::deleteButtonSlot()
+{
+    emit deleteShortcutSignal(currentShortcut);
+    hide();
+}
+
+void ShortcutCreator::okButtonSlot()
+{
+    emit updateShortcutSignal(currentShortcut,ui->titleEdit->text(),ui->commandEdit->text());
+    hide();
+}
+
+void ShortcutCreator::cancelButtonSlot()
+{
+ hide();
+}
+
+void ShortcutCreator::updateButtonSlot(int shortcutID, QString newTitleShortcut, QString newCommandShortcut)
+{
+    show();
+    currentShortcut = shortcutID;
+    ui->titleEdit->settext
+            ui->
+}

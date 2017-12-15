@@ -1,0 +1,40 @@
+#ifndef SHURTCUTCREATOR_H
+#define SHURTCUTCREATOR_H
+
+#include <QDialog>
+
+QT_USE_NAMESPACE
+
+QT_BEGIN_NAMESPACE
+
+namespace Ui {
+class ShortcutCreator;
+}
+
+QT_END_NAMESPACE
+
+class ShurtcutCreator : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit ShurtcutCreator(QWidget *parent = 0);
+    ~ShurtcutCreator();
+
+signals:
+    void configureButton(QString titleButton, QString commandButton);
+    void deleteButtonSignal(int buttonId);
+
+private slots:
+    void updateShortcut(int buttonId);
+
+    void deleteButton();
+    void okButtonSlot();
+    void cancelButtonSlot();
+
+private:
+    Ui::ShurtcutCreator *ui;
+    int currentShortcut = 0;
+};
+
+#endif // SHURTCUTCREATOR_H
